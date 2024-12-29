@@ -23,5 +23,24 @@ def pregunta_07():
      (7, ['A', 'C', 'E', 'D']),
      (8, ['E', 'D', 'E', 'A', 'B']),
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
-
     """
+    agrupaciones = {}
+
+    # Paso 1: Leer el archivo
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")  # Dividir las columnas
+            letra = columnas[0]  # Columna 1 (letra)
+            valor = int(columnas[1])  # Columna 2 (convertir a entero)
+
+            # Paso 2: Agrupar las letras por el valor de la columna 2
+            if valor in agrupaciones:
+                agrupaciones[valor].append(letra)  # Agregar letra a la lista existente
+            else:
+                agrupaciones[valor] = [letra]  # Crear nueva lista con la letra
+
+    # Paso 3: Convertir a lista de tuplas y ordenar por valor de la columna 2
+    resultado = sorted(agrupaciones.items())
+
+    return resultado
+

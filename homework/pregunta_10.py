@@ -17,6 +17,19 @@ def pregunta_10():
      ...
      ('E', 2, 3),
      ('E', 3, 3)]
-
-
     """
+    resultado = []
+
+    # Paso 1: Leer el archivo
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")  # Dividir la línea en columnas
+            letra = columnas[0]  # Columna 1 (letra)
+            cantidad_columna_4 = len(columnas[3].split(","))  # Contar elementos de la columna 4
+            cantidad_columna_5 = len(columnas[4].split(","))  # Contar elementos de la columna 5
+
+            # Crear la tupla y agregarla al resultado
+            resultado.append((letra, cantidad_columna_4, cantidad_columna_5))
+
+    return resultado
+

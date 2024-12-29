@@ -24,5 +24,23 @@ def pregunta_04():
      ('10', 2),
      ('11', 2),
      ('12', 3)]
-
     """
+    conteo_por_mes = {}
+
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")  # Dividir la línea en columnas
+            fecha = columnas[2]  # Columna 3 contiene la fecha
+            mes = fecha.split("-")[1]  # Extraer el mes (segundo componente de la fecha)
+
+            # Contar registros por mes
+            if mes in conteo_por_mes:
+                conteo_por_mes[mes] += 1
+            else:
+                conteo_por_mes[mes] = 1
+
+    # Convertir el diccionario a lista de tuplas y ordenar por mes
+    resultado = sorted(conteo_por_mes.items())
+
+    return resultado
+
